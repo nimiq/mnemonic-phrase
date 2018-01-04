@@ -78,7 +78,7 @@ class MnemonicPhrase {
         return MnemonicPhrase._bytesToBinary([hash]);
     }
 
-    static entropyToMnemonic(entropy, wordlist) {
+    static keyToMnemonic(entropy, wordlist) {
         if(typeof entropy === 'string') entropy = MnemonicPhrase._hexToArray(entropy);
         if(entropy instanceof ArrayBuffer) entropy = new Uint8Array(entropy);
 
@@ -102,7 +102,7 @@ class MnemonicPhrase {
         return words.join(' ');
     }
 
-    static mnemonicToEntropy(mnemonic, wordlist) {
+    static mnemonicToKey(mnemonic, wordlist) {
         wordlist = wordlist || MnemonicPhrase.DEFAULT_WORDLIST;
 
         var words = (mnemonic.normalize('NFKD')).trim().split(/\s+/g);
