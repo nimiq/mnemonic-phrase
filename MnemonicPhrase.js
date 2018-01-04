@@ -1,5 +1,5 @@
 class MnemonicPhrase {
-    // From https://github.com/LinusU/hex-to-array-buffer
+    // Adapted from https://github.com/LinusU/hex-to-array-buffer
     static _hexToArray(hex) {
         if(typeof hex !== 'string') {
             throw new TypeError('Expected input to be a string');
@@ -18,7 +18,7 @@ class MnemonicPhrase {
         return view;
     }
 
-    // From https://github.com/LinusU/array-buffer-to-hex
+    // Adapted from https://github.com/LinusU/array-buffer-to-hex
     static _arrayToHex(view) {
         if(typeof view !== 'object' || !(view instanceof Uint8Array)) {
             throw new TypeError('Expect input to be an Uint8Array');
@@ -33,7 +33,7 @@ class MnemonicPhrase {
         return result;
     }
 
-    // From bincoinjs
+    // Adapted from https://github.com/bitcoinjs/bip39
     static _lpad(str, padString, length) {
         while(str.length < length) str = padString + str;
         return str;
@@ -84,7 +84,9 @@ class MnemonicPhrase {
     static async mnemonicToEntropy(mnemonic, wordlist) {
         wordlist = wordlist || MnemonicPhrase.DEFAULT_WORDLIST;
 
-        var words = (mnemonic.normalize('NFKD')).split(' ');
+        var words = (mnemonic.normalize('NFKD')).trim().split(/\s+/g);
+        // TODO Check if this lib should be specific to Nimiq and check for 24 words
+        if(words.length < 12) throw new Error('Invalid mnemonic, less than 12 words');
         if(words.length % 3 !== 0) throw new Error('Invalid mnemonic, words % 3 != 0');
 
         // Convert word indices to 11 bit binary strings
