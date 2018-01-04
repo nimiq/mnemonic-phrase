@@ -1,36 +1,19 @@
 class MnemonicPhrase {
-    // Adapted from https://github.com/LinusU/hex-to-array-buffer
+    /**
+     * @param {string} hex
+     * @return {Uint8Array}
+     */
     static _hexToArray(hex) {
-        if(typeof hex !== 'string') {
-            throw new TypeError('Expected input to be a string');
-        }
-
-        if((hex.length % 2) !== 0) {
-            throw new RangeError('Expected string to be an even number of characters');
-        }
-
-        var view = new Uint8Array(hex.length / 2);
-
-        for(var i = 0; i < hex.length; i += 2) {
-            view[i / 2] = parseInt(hex.substring(i, i + 2), 16);
-        }
-
-        return view;
+        hex = hex.trim();
+        return Uint8Array.from(hex.match(/.{2}/g), byte => parseInt(byte, 16));
     }
 
-    // Adapted from https://github.com/LinusU/array-buffer-to-hex
-    static _arrayToHex(view) {
-        if(typeof view !== 'object' || !(view instanceof Uint8Array)) {
-            throw new TypeError('Expect input to be an Uint8Array');
-        }
-
-        var result = '';
-
-        for(var i = 0; i < view.length; i++) {
-            result += MnemonicPhrase._lpad(view[i].toString(16), '0', 2);
-        }
-
-        return result;
+    /**
+     * @param {*} buffer
+     * @return {string}
+     */
+    static _arrayToHex(buffer) {
+        return Array.prototype.map.call(buffer, x => ('00' + x.toString(16)).slice(-2)).join('');
     }
 
     // Adapted from https://github.com/mode80/crc8js
@@ -115,7 +98,7 @@ class MnemonicPhrase {
             var index = wordlist.indexOf(word);
             if(index === -1) throw new Error('Invalid mnemonic, word >' + word + '< is not in wordlist');
 
-            return MnemonicPhrase._lpad(index.toString(2), '0', 11)
+            return MnemonicPhrase._lpad(index.toString(2), '0', 11);
         }).join('');
 
         // Split the binary string into ENT/CS

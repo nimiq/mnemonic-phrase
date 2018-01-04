@@ -23,6 +23,4 @@ var key = MnemonicPhrase.mnemonicToKey(mnemonic);
 ## Based on
 * [BIP-0039 wordlists](https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md)
 * [JavaScript implementation of Bitcoin BIP39](https://github.com/bitcoinjs/bip39)
-* [hex-to-array-buffer](https://github.com/LinusU/hex-to-array-buffer)
-* [array-buffer-to-hex](https://github.com/LinusU/array-buffer-to-hex)
 * [CRC8JS](https://github.com/mode80/crc8js)
