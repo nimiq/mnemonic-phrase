@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MnemonicPhrase Test</title>
+    <script src="MnemonicPhrase.js"></script>
+    <script>
+        var key = 'a18532abfb31ba4e26d64a3ac3430969639aeb5f84b1c4124da0f3e323cdaced';
+        console.log('Original Key  :', key);
+
+        var mnemonic = MnemonicPhrase.keyToMnemonic(key);
+        console.log('keyToMnemonic :', mnemonic);
+
+        var newKey = MnemonicPhrase.mnemonicToKey(mnemonic);
+        console.log('mnemonicToKey :', newKey);
+
+        console.log('Original and generated key are equal:', key === newKey);
+    </script>
+</head>
+<body>
+    Check the console
+</body>
+</html>
