@@ -2,13 +2,16 @@
 <html>
 <head>
     <title>Embedded MEW Message Signing</title>
-    <script src="mnemonic.js"></script>
+    <script src="MnemonicPhrase.js"></script>
     <script>
         var key = 'c18532abfb31ba4e25d63a3ac3430969639aeb5f88b1c4124da093e323cdaced';
-        console.log(key);
-        entropyToMnemonic(key).then(mnemonic => {
-            console.log(mnemonic);
-            mnemonicToEntropy(mnemonic).then(console.log);
+        console.log('Private Key:', key);
+        MnemonicPhrase.entropyToMnemonic(key).then(mnemonic => {
+            console.log('Generated Phrase:', mnemonic);
+            MnemonicPhrase.mnemonicToEntropy(mnemonic).then(newKey => {
+                console.log('Generated Key:', newKey);
+                console.log('Original and generated key are the same:', key === newKey);
+            });
         });
     </script>
 </head>
