@@ -85,9 +85,9 @@ class MnemonicPhrase {
         wordlist = wordlist || MnemonicPhrase.DEFAULT_WORDLIST;
 
         // 128 <= ENT <= 256
-        if(entropy.length < 16) throw new TypeError('Invalid entropy, length < 16');
-        if(entropy.length > 32) throw new TypeError('Invalid entropy, length > 32');
-        if(entropy.length % 4 !== 0) throw new TypeError('Invalid entropy, length % 4 != 0');
+        if(entropy.length < 16) throw new TypeError('Invalid key, length < 16');
+        if(entropy.length > 32) throw new TypeError('Invalid key, length > 32');
+        if(entropy.length % 4 !== 0) throw new TypeError('Invalid key, length % 4 != 0');
 
         var entropyBits = MnemonicPhrase._bytesToBinary([].slice.call(entropy));
         var checksumBits = MnemonicPhrase._deriveChecksumBits(entropy);
@@ -126,9 +126,9 @@ class MnemonicPhrase {
         // Calculate the checksum and compare
         var entropyBytes = entropyBits.match(/(.{1,8})/g).map(MnemonicPhrase._binaryToBytes);
 
-        if(entropyBytes.length < 16) throw new Error('Invalid entropy, length < 16');
-        if(entropyBytes.length > 32) throw new Error('Invalid entropy, length > 32');
-        if(entropyBytes.length % 4 !== 0) throw new Error('Invalid entropy, length % 4 != 0');
+        if(entropyBytes.length < 16) throw new Error('Invalid generated key, length < 16');
+        if(entropyBytes.length > 32) throw new Error('Invalid generated key, length > 32');
+        if(entropyBytes.length % 4 !== 0) throw new Error('Invalid generated key, length % 4 != 0');
 
         var entropy = new Uint8Array(entropyBytes);
         var newChecksum = MnemonicPhrase._deriveChecksumBits(entropy);
