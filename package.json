@@ -5,6 +5,7 @@
   "main": "mnemonic-phrase.min.js",
   "scripts": {
     "build": "uglifyjs src/mnemonic-phrase.js --compress --output mnemonic-phrase.min.js",
+    "pretest": "npm run build",
     "test": "jasmine"
   },
   "repository": {

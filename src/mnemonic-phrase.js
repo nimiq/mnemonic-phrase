@@ -76,7 +76,7 @@ class MnemonicPhrase {
         var checksumBits = MnemonicPhrase._deriveChecksumBits(entropy);
 
         var bits = entropyBits + checksumBits;
-        var chunks = bits.match(/(.{1,11})/g);
+        var chunks = bits.match(/(.{11})/g);
         var words = chunks.map(function(binary) {
             var index = MnemonicPhrase._binaryToBytes(binary);
             return wordlist[index];
@@ -89,8 +89,8 @@ class MnemonicPhrase {
         wordlist = wordlist || MnemonicPhrase.DEFAULT_WORDLIST;
 
         var words = (mnemonic.normalize('NFKD')).trim().split(/\s+/g);
-        // TODO Check if this lib should be specific to Nimiq and check for 24 words
         if(words.length < 12) throw new Error('Invalid mnemonic, less than 12 words');
+        if(words.length > 24) throw new Error('Invalid mnemonic, more than 24 words');
         if(words.length % 3 !== 0) throw new Error('Invalid mnemonic, words % 3 != 0');
 
         // Convert word indices to 11 bit binary strings
@@ -102,19 +102,19 @@ class MnemonicPhrase {
         }).join('');
 
         // Split the binary string into ENT/CS
-        var dividerIndex = Math.floor(bits.length / 33) * 32;
+        var dividerIndex = bits.length - (bits.length % 8 || 8);
         var entropyBits = bits.slice(0, dividerIndex);
         var checksumBits = bits.slice(dividerIndex);
 
         // Calculate the checksum and compare
-        var entropyBytes = entropyBits.match(/(.{1,8})/g).map(MnemonicPhrase._binaryToBytes);
+        var entropyBytes = entropyBits.match(/(.{8})/g).map(MnemonicPhrase._binaryToBytes);
 
         if(entropyBytes.length < 16) throw new Error('Invalid generated key, length < 16');
         if(entropyBytes.length > 32) throw new Error('Invalid generated key, length > 32');
         if(entropyBytes.length % 4 !== 0) throw new Error('Invalid generated key, length % 4 != 0');
 
         var entropy = new Uint8Array(entropyBytes);
-        var newChecksum = MnemonicPhrase._deriveChecksumBits(entropy);
+        var newChecksum = MnemonicPhrase._deriveChecksumBits(entropy).slice(0, checksumBits.length);
         if(newChecksum !== checksumBits) throw new Error('Invalid checksum');
 
         return MnemonicPhrase._arrayToHex(entropy);
