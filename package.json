@@ -18,7 +18,8 @@
     "private",
     "key"
   ],
-  "author": "",
+  "license": "MIT",
+  "author": "Nimiq Foundation",
   "bugs": {
     "url": "https://github.com/nimiq/mnemonic-phrase/issues"
   },
