@@ -1,0 +1,27 @@
+{
+  "name": "mnemonic-phrase",
+  "version": "1.0.0",
+  "description": "Create mnemonic phrases from HEX strings and vice-versa.",
+  "main": "mnemonic-phrase.min.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nimiq/mnemonic-phrase.git"
+  },
+  "keywords": [
+    "mnemonic",
+    "phrase",
+    "private",
+    "key"
+  ],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/nimiq/mnemonic-phrase/issues"
+  },
+  "homepage": "https://github.com/nimiq/mnemonic-phrase#readme",
+  "devDependencies": {
+    "jasmine": "^2.8.0"
+  }
+}
