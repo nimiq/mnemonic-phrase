@@ -6,7 +6,7 @@ Used in the [Nimiq blockchain](https://nimiq.com) to create mnemonic phrases fro
 
 ## Usage
 ```HTML
-<script type="text/javascript" src="mnemonic-phrase.js"></script>
+<script type="text/javascript" src="mnemonic-phrase.min.js"></script>
 ```
 
 ```javascript

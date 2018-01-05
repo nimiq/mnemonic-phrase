@@ -4,6 +4,7 @@
   "description": "Create mnemonic phrases from HEX strings and vice-versa.",
   "main": "mnemonic-phrase.min.js",
   "scripts": {
+    "build": "uglifyjs src/mnemonic-phrase.js --compress --output mnemonic-phrase.min.js",
     "test": "jasmine"
   },
   "repository": {
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/nimiq/mnemonic-phrase#readme",
   "devDependencies": {
-    "jasmine": "^2.8.0"
+    "jasmine": "^2.8.0",
+    "uglify-es": "^3.3.4"
   }
 }
