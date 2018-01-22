@@ -83,7 +83,7 @@ class MnemonicPhrase {
         var chunks = bits.match(/(.{11})/g);
         var words = chunks.reduce((words, chunk) => {
             var index = MnemonicPhrase._binaryToBytes(chunk);
-            return words + ' ' + wordlist[index];
+            return words + (words ? ' ' : '') + wordlist[index];
         }, '');
 
         return words;
