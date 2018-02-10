@@ -1,4 +1,4 @@
-# MnemonicPhrase
+# Mnemonic Phrase
 
 Create mnemonic phrases from HEX strings and vice-versa.
 
