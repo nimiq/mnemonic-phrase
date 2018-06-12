@@ -5,8 +5,13 @@ Create mnemonic phrases from HEX strings and vice-versa.
 Used in the [Nimiq blockchain](https://nimiq.com) to create mnemonic phrases from private keys.
 
 ## Usage
+In HTML as a standard script tag:
 ```HTML
-<script type="text/javascript" src="mnemonic-phrase.min.js"></script>
+<script type="text/javascript" src="mnemonic-phrase.es5.min.js"></script>
+```
+If using JS imports:
+```javascript
+import MnemonicPhrase from '/path/to/mnemonic-phrase.min.js';
 ```
 
 ```javascript
