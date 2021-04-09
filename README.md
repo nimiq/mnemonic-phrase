@@ -1,3 +1,6 @@
+> ### Attention!
+> This repository is outdated and does not produce BIP39-compliant mnemonic phrases. Please use https://github.com/nimiq/core-js/blob/master/src/main/generic/utils/mnemonic/MnemonicUtils.js instead.
+
 # Mnemonic Phrase
 
 Create mnemonic phrases from HEX strings and vice-versa.
